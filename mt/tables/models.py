@@ -6,4 +6,4 @@ class Table(models.Model):
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"Table {self.number} ({'Available' if self.is_available else 'Occupied'})"
+        return f"Table {self.number}"
