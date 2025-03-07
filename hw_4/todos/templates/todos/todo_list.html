@@ -1,9 +1,53 @@
 {% extends "base.html" %}
+
+{% block title %}Списки дел{% endblock %}
+
 {% block content %}
-    <h1>Todo Lists</h1>
-    <ul>
-        {% for todo_list in todo_lists %}
-            <li><a href="{% url 'todo_list_detail' todo_list.id %}">{{ todo_list.title }}</a></li>
-        {% endfor %}
-    </ul>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Списки дел</h1>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTodoListModal">Добавить список</button>
+</div>
+
+<div class="row">
+    {% for todo_list in todo_lists %}
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ todo_list.title }}</h5>
+                <p class="card-text">{{ todo_list.description }}</p>
+                <a href="{% url 'todo_list_detail' todo_list.id %}" class="btn btn-outline-primary">Подробнее</a>
+                <a href="{% url 'edit_todo_list' todo_list.id %}" class="btn btn-outline-warning">Изменить</a>
+                <a href="{% url 'delete_todo_list' todo_list.id %}" class="btn btn-outline-danger">Удалить</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Модальное окно для создания списка -->
+<div class="modal fade" id="addTodoListModal" tabindex="-1" aria-labelledby="addTodoListModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTodoListModalLabel">Новый список дел</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'todo_list_view' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Название</label>
+                        <input type="text" class="form-control" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Описание</label>
+                        <textarea class="form-control" name="description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

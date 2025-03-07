@@ -50,3 +50,10 @@ def edit_todo(request, id):
         todo.save()
         return redirect('todo_list_detail', id=todo.todo_list.id)
     return render(request, 'todos/edit_todo.html', {'todo': todo})
+
+from django.shortcuts import render
+from .models import TodoList
+
+def todo_list(request):
+    todo_lists = TodoList.objects.all()
+    return render(request, 'todos/todo_list.html', {'todo_lists': todo_lists})

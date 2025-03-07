@@ -21,3 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('todos.urls')),
 ]
+from django.contrib import admin
+from django.urls import path, include
+from todos.views import todo_list  # Импортируем представление
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', todo_list, name='home'),  # Теперь это главная страница
+    path('todo-lists/', include('todos.urls')),  
+]

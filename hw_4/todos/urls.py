@@ -10,3 +10,10 @@ urlpatterns = [
     path('todos/<int:id>/delete/', views.delete_todo, name='delete_todo'),
     path('todos/<int:id>/edit/', views.edit_todo, name='edit_todo'),
 ]
+
+from django.urls import path
+from .views import todo_list
+
+urlpatterns = [
+    path('todo-lists/', todo_list, name='todo_list_view'),
+]
