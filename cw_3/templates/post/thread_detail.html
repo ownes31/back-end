@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ thread.name }}</h1>
+<p>{{ thread.description }}</p>
+
+<h3>Posts</h3>
+<ul class="list-group">
+    {% for post in posts %}
+        <li class="list-group-item">
+            <strong>{{ post.title }}</strong> by {{ post.author }}
+            <p>{{ post.description }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'thread_list' %}" class="btn btn-secondary mt-3">Back</a>
+{% endblock %}

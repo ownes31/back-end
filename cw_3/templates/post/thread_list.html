@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Threads</h1>
+<ul class="list-group">
+    {% for thread in threads %}
+        <li class="list-group-item">
+            <a href="{% url 'thread_detail' thread.id %}">{{ thread.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
