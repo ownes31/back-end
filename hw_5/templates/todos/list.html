@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Todo List</h1>
+    <ul class="list-group">
+        {% for todo in todos %}
+            <li class="list-group-item">
+                <strong>{{ todo.title }}</strong> - {{ todo.description }} ({{ todo.due_date }})
+                <a href="{% url 'todo_detail' todo.id %}" class="btn btn-primary btn-sm">View</a>
+                <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No todos available.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
