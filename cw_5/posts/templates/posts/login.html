@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Вход{% endblock %}
+{% block content %}
+    <h2>Войти</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Имя пользователя" class="form-control">
+        <input type="password" name="password" placeholder="Пароль" class="form-control">
+        <button type="submit" class="btn btn-primary mt-2">Войти</button>
+    </form>
+{% endblock %}
