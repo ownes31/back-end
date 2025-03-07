@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Список постов</h1>
+    <a href="{% url 'post_create' %}" class="btn btn-primary">Создать пост</a>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> - {{ post.author }}
+                <form action="{% url 'post_delete' post.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
