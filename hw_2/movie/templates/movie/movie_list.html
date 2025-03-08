@@ -1,0 +1,5 @@
+{% for movie in movies %}
+    <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></h2>
+    <p>{{ movie.description }}</p>
+    <hr>
+{% endfor %}
